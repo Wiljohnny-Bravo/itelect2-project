@@ -3,10 +3,6 @@ import db from "../models/index.cjs";
 
 const { Task, User } = db;
 
-console.log("MODELS LOADED:", Object.keys(db));
-console.log("TASK MODEL:", Task);
-console.log("USER MODEL:", User);
-
 const router = express.Router();
 
 router.get("/tasks", async (req, res) => {
