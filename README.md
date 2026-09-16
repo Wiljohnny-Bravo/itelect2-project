@@ -12,3 +12,19 @@ My IT Elective 2 backend web development project.
 ### 4. DELETE /api/tasks/:id
 ![DELETE task screenshot](screenshots/DELETE.png)
 ![DELETE task screenshot](screenshots/DELETE_after.png)
+
+#GT8 - PostgreSQL and Sequelize Testing
+### GET Tasks with User (JOIN)
+![GET tasks screenshot](screenshots/GT8%20GET.png)
+### GET id
+![GET tasks screenshot](screenshots/GT8%20GET%20id.png)
+### GET not found
+![GET tasks screenshot](screenshots/GT8%20GET%20not%20found.png)
+### GET users
+![GET tasks screenshot](screenshots/GT8%20GET%20users.png)
+### POST
+![POST tasks screenshot](screenshots/GT8%20POST.png)
+### POST error
+![POST tasks screenshot](screenshots/GT8%20POST%20error.png)
+### DELETE
+![POST tasks screenshot](screenshots/GT8%20DELETE.png)
