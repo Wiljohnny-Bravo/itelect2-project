@@ -1,5 +1,7 @@
 import express from "express";
 import db from "../models/index.cjs";
+import requireRole from "../middleware/requireRole.js";
+import verifyToken from "../middleware/verifyToken.js";
 
 const { Task, User } = db;
 
@@ -42,7 +44,7 @@ router.get("/users", async (req, res) => {
   res.json(users);
 });
 
-router.post("/tasks", async (req, res) => {
+router.post("/tasks", verifyToken, async (req, res) => {
   try {
     const { title, dueDate, completed, userId } = req.body;
 
@@ -81,7 +83,7 @@ router.post("/tasks", async (req, res) => {
   }
 });
 
-router.put("/tasks/:id", async (req, res) => {
+router.put("/tasks/:id", verifyToken, async (req, res) => {
   const task = await Task.findByPk(req.params.id);
 
   if (!task) {
@@ -95,21 +97,27 @@ router.put("/tasks/:id", async (req, res) => {
   res.json(task);
 });
 
-router.delete("/tasks/:id", async (req, res) => {
-  const task = await Task.findByPk(req.params.id);
+router.delete(
+  "/tasks/:id",
+  verifyToken,
+  requireRole("admin"),
+  async (req, res) => {
+    const task = await Task.findByPk(req.params.id);
 
-  if (!task) {
-    return res.status(404).json({
-      error: "Task not found",
+    if (!task) {
+      return res.status(404).json({
+        error: "Task not found",
+      });
+    }
+
+    await task.destroy();
+
+    res.json({
+      message: "Deleted",
+      task,
+      deletedBy: req.user.email,
     });
-  }
-
-  await task.destroy();
-
-  res.json({
-    message: "Deleted",
-    task,
-  });
-});
+  },
+);
 
 export default router;
