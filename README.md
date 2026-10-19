@@ -28,3 +28,5 @@ My IT Elective 2 backend web development project.
 ![POST tasks screenshot](screenshots/GT8%20POST%20error.png)
 ### DELETE
 ![POST tasks screenshot](screenshots/GT8%20DELETE.png)
+## Live URL
+https://itelect2-project-okzy.onrender.com
