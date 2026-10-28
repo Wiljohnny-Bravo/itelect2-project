@@ -17,7 +17,12 @@ if (!process.env.JWT_SECRET) {
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(cors());
+const allowedOrigins = (process.env.CORS_ORIGIN || "")
+  .split(",")
+  .filter(Boolean);
+
+app.use(cors({ origin: allowedOrigins }));
+
 app.use(morgan("dev"));
 app.use(express.json());
 
